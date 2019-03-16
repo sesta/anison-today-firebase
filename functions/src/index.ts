@@ -1,6 +1,6 @@
 import { https, Request, Response } from 'firebase-functions'
 
-import { getSlackEventResponse } from './slackEventHandler'
+import { getSlackEventResponse } from './slack-event-handler'
 
 const STATUS_OK = 200
 const STATUS_ERROR = 500
