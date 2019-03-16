@@ -13,6 +13,8 @@ export const slackEvent = https.onRequest((request: Request, response: Response)
   }
 
   if (body.type === 'url_verification') {
+    console.log('url_verification')
+
     return response.status(STATUS_OK).json({ 'challenge': body.challenge })
   }
 
