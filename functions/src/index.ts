@@ -1,5 +1,7 @@
 import { https, Request, Response } from 'firebase-functions'
 
+import { getSlackEventResponse } from './slackEventHandler'
+
 const STATUS_OK = 200
 const STATUS_ERROR = 500
 
@@ -7,7 +9,7 @@ export const slackEvent = https.onRequest((request: Request, response: Response)
   const { body } = request
 
   if (body.type === 'event_callback') {
-    return response.status(STATUS_OK).send('OK')
+    return response.status(STATUS_OK).send(getSlackEventResponse(body))
   }
 
   if (body.type === 'url_verification') {
@@ -17,5 +19,5 @@ export const slackEvent = https.onRequest((request: Request, response: Response)
   console.log('予期せぬリクエストです')
   console.log(body)
 
-  return response.status(STATUS_ERROR).send('error')
+  return response.status(STATUS_ERROR)
 })
